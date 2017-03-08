@@ -1,0 +1,15 @@
+#!/bin/bash
+SERVICE=obelix
+SCOPE=appengine
+ENV=qa_apse1
+S3BUCKET="s3://build/deploy-scripts/$ENV"
+if [ -z $ANS_VERSION ]; then
+    ANS_VERSION=latest
+fi
+if [ -z $VERSION ]; then
+    VERSION=latest
+fi
+aws s3 cp ${S3BUCKET}/${SERVICE}-${SCOPE}.sh setup.sh
+chmod +x setup.sh
+./setup.sh $ANS_VERSION $VERSION $ENV
+

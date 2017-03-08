@@ -1,0 +1,19 @@
+{
+"Id": "Policy14856343134254",
+"Version": "2012-10-17",
+"Statement": [
+  {
+    "Sid": "Stmt1485434777691",
+    "Action": [
+      "s3:PutObject"
+    ],
+    "Effect": "Allow",
+    "Resource": "arn:aws:s3:::elb-accesslogs-obelix-appengine-qa/AWSLogs/123456789/*",
+    "Principal": {
+      "AWS": [
+        "123456789"
+      ]
+    }
+  }
+]
+}

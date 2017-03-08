@@ -1,0 +1,35 @@
+internet_gateway = igw-cd6b4aa8
+natgateway_ip = eipalloc-2e632d4b
+private_generic_a = subnet-8b275def
+private_generic_b = subnet-3c3f564a
+
+public_generic_a = subnet-05265c61
+public_generic_b = subnet-ca3e57bc
+
+qa_ec2_profile = qa_ec2_role
+route53_zone = Z2XUYKF0GF3IDR
+security_group_generic = sg-30893e57
+vpc_id = vpc-4ebf072a
+private_route_table = rtb-81b1f4e5
+public_route_table = rtb-bbb1f4df
+find . -type f -exec sed -i -e 's/apple/rtb-bbb1f4df/g' {} \;
+find . -type f -exec sed -i -e 's//igw-cd6b4aa8/g' {} \;
+find . -type f -exec sed -i -e 's/subnet-4e83fa2a/subnet-8b275def/g' {} \;
+find . -type f -exec sed -i -e 's/subnet-89f599ff/subnet-3c3f564a/g' {} \;
+find . -type f -exec sed -i -e 's/apple/subnet-05265c61/g' {} \;
+find . -type f -exec sed -i -e 's/subnet-76f69a00/subnet-ca3e57bc/g' {} \;
+find . -type f -exec sed -i -e 's/apple/qa_ec2_role/g' {} \;
+find . -type f -exec sed -i -e 's/Z2ZJ8HTE98862V/Z2XUYKF0GF3IDR/g' {} \;
+find . -type f -exec sed -i -e 's/apple/sg-30893e57/g' {} \;
+find . -type f -exec sed -i -e 's/vpc-0cfa4468/vpc-4ebf072a/g' {} \;
+find . -type f -exec sed -i -e 's/rtb-47dea623/rtb-81b1f4e5/g' {} \;
+find . -type f -exec sed -i -e 's/apple/rtb-bbb1f4df/g' {} \;
+find . -type f -exec sed -i -e 's/apple/Z15L6NGR4CMT1Z/g' {} \;
+
+find . -type f -exec sed -i -e 's/Z3HCJD8CUCR6K/Z2XUYKF0GF3IDR/g' {} \;
+
+Z15L6NGR4CMT1Z/Z2859T7PBQHQMN
+
+find . -type f -exec sed -i -e 's/Z15L6NGR4CMT1Z/Z2859T7PBQHQMN/g' {} \;
+
+https://gist.github.com/jacksoncage/5974695
