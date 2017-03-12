@@ -1,0 +1,29 @@
+- name: make sure following files exists
+  file: dest=/home/ec2-user/termination_scripts state=directory
+
+- name: make sure following files exists
+  file: dest=dest=/var/log/ec2-user/ state=directory
+  become: yes
+
+- name: copying spot notifier script
+  copy: src=files/spot_termination_notifier.sh dest=/home/ec2-user/termination_scripts/
+
+- name: copy a script to run notifier script every 5 seconds
+  copy: src=spot_termination_notifier_wrapper.sh dest=/home/ec2-user/termination_scripts/
+
+- name: copy an asg specific script to be run on instance before termination this 
+  copy: src=files/{{asg_name}}-spot-asg.sh dest=/home/ec2-user/termination_scripts/
+  ignore_errors: True
+
+- name: make sure file is present 
+  file: dest=/var/log/ec2-user/spotnotifier.log state=touch
+  become: yes
+
+- file: dest=/etc/cron.d/spot-notifier state=touch
+  become: yes
+
+- name: Make a cron entry for calling wrapper script for spot notifier script
+  lineinfile: dest=/etc/cron.d/spot-notifier 
+              line="* * * * * root  /bin/bash /home/ec2-user/termination_scripts/spot_termination_notifier_wrapper.sh spot_termination_notifier.sh {{asg_name}}-spot-asg >> /var/log/ec2-user/spotnotifier.log"
+              state=present
+  become: yes
