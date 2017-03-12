@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Script to make promote a build to be the "latest-stable". This is configured as a Jenkins build job.
+# Script to promote a build to be the "latest-stable". This is configured as a Jenkins build job.
 
 set -e
 if [ "latest" == "$RELEASE_VERSION" ]; then
 	aws s3 cp s3://build/$ARTIFACT/prod/latest.txt RELEASE
     GIT_COMMIT_ID=`grep GIT_COMMIT RELEASE | cut -d'=' -f2`
     cd $WORKSPACE
-    git config user.email "XXX@exotel.in"
+    git config user.email "XXX@yyy.GIT_COMMIT"
   	git config user.name "Demo user"
     git tag -d $GIT_TAG_NAME || echo "Tag doesn't exist. Creating one"
     git push origin :refs/tags/$GIT_TAG_NAME || echo "Tag doesn't exist. Creating one"
@@ -26,7 +26,7 @@ elif [[ $RELEASE_VERSION =~ ^[0-9]+$ ]]; then
         tar xf ../$ARTIFACT-$RELEASE_VERSION.tar
         GIT_COMMIT_ID=`grep GIT_COMMIT RELEASE | cut -d'=' -f2`
     	cd $WORKSPACE
-    	git config user.email "xxx@exotel.in"
+    	git config user.email "xxx@yyy.com"
   		git config user.name "Demo user"
     	git tag -d $GIT_TAG_NAME || echo "Tag doesn't exist. Creating one"
     	git push origin :refs/tags/$GIT_TAG_NAME || echo "Tag doesn't exist. Creating one"
