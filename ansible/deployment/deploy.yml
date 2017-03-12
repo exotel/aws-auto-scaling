@@ -1,0 +1,13 @@
+---
+- hosts: '{{ hosts }}'
+  become: yes
+  become_method: sudo
+  tasks:
+  - script: "{{ scriptlet }} {{ service }} {{ ans_version }} {{ version }}"
+    become_user: root
+    register: output
+    when: scriptlet is defined
+  - debug: msg="{{ output.stdout }}"
+    when: output is defined
+
+

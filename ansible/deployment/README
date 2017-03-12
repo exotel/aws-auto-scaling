@@ -1,0 +1,7 @@
+# USAGE
+
+./setup.sh <service> <scope> [<hosts>]
+
+The ec2.ini file for the respective target group is created (symlinked) automatically.
+
+
